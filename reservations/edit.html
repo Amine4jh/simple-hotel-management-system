@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Edit reservation</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <style>
+    form.edit button {
+      background: #f6a33e;
+    }
+    form.edit button:hover {
+      background: #ed8a11;
+    }
+    #load {
+      text-align: center;
+    }
+  </style>
+  <body>
+    <a href="/reservations/show" id="btn">Back</a>
+    <h2 style="text-align: center">Edit Reservation</h2>
+
+    <form action="" method="post" class="edit">
+      <label for="guest">Guest</label>
+      <select name="guest" id="guest">
+        <option value="">Choose guest...</option>
+      </select>
+
+      <label for="room">Room</label>
+      <select name="room" id="room">
+        <option value="">Choose room...</option>
+      </select>
+
+      <label for="sdate">Start Date</label>
+      <input type="date" id="sdate" name="sdate" />
+
+      <label for="edate">End Date</label>
+      <input type="date" id="edate" name="edate" />
+
+      <button type="submit">Update</button>
+    </form>
+    <h6 id="load">Loading...</h6>
+  </body>
+  <script>
+    const fetchData = async (url) => {
+      try {
+        const response = await fetch(url);
+        if (!response.ok) {
+          console.error(`Response status: ${response.status}`);
+          return;
+        }
+        const result = await response.json();
+        return result;
+      } catch (error) {
+        console.error(error.message);
+        return false;
+      }
+    };
+
+    const guestDropDown = document.getElementById("guest");
+    fetchData("/api/guests").then((result) => {
+      for (let guest of result.guests) {
+        guestDropDown.innerHTML += `<option value="${guest.id}">${guest.last_name} ${guest.first_name}</option>`;
+      }
+    });
+
+    const roomDropDown = document.getElementById("room");
+    fetchData("/api/rooms").then((result) => {
+      for (let room of result.rooms) {
+        roomDropDown.innerHTML += `<option value="${room.id}">${room.number}</option>`;
+      }
+    });
+
+    const id = location.pathname.split("/").pop();
+    const sDate = document.getElementById("sdate");
+    const eDate = document.getElementById("edate");
+    fetchData(`/api/reservations/edit/${id}`)
+      .then((result) => {
+        const { guest_id, room_id, start_date, end_date } = result.reservation;
+        guestDropDown.value = guest_id;
+        roomDropDown.value = room_id;
+        sDate.value = start_date;
+        eDate.value = end_date;
+      })
+      .catch((err) => {
+        console.error("Something wrong:", err);
+      })
+      .finally(() => {
+        document.getElementById("load").style.display = "none";
+      });
+  </script>
+</html>

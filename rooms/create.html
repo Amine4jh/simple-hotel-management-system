@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add room</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <a href="/rooms" id="btn">Back</a>
+    <h2 style="text-align: center">Add a New Room</h2>
+
+    <form action="" method="post">
+      <label for="num">Number</label>
+      <input type="text" id="num" name="num" placeholder="Room number..." />
+
+      <label for="price">Price per night (MAD)</label>
+      <input type="text" id="price" name="price" placeholder="Room price..." />
+
+      <label for="status">Status</label>
+      <select name="status" id="status">
+        <option value="">Choose status...</option>
+        <option value="active">Active</option>
+        <option value="inactive">Inactive</option>
+      </select>
+
+      <!-- !!! Add image after time !!! -->
+
+      <!-- <label for="card_id">Card ID</label>
+      <input type="text" id="card_id" name="card_id" placeholder="Card ID..." /> -->
+
+      <!-- !!! Add image after time !!! -->
+
+      <button type="submit">Add</button>
+    </form>
+  </body>
+</html>

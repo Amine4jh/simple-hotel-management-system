@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create reservation</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <a href="/reservations" id="btn">Back</a>
+    <h2 style="text-align: center">Create a New Reservation</h2>
+
+    <form action="" method="post">
+      <label for="guest">Guest</label>
+      <select name="guest" id="guest">
+        <option value="">Choose guest...</option>
+      </select>
+
+      <label for="room">Room</label>
+      <select name="room" id="room">
+        <option value="">Choose room...</option>
+      </select>
+
+      <label for="sdate">Start Date</label>
+      <input type="date" id="sdate" name="sdate" />
+
+      <label for="edate">End Date</label>
+      <input type="date" id="edate" name="edate" />
+
+      <button type="submit">Add</button>
+    </form>
+  </body>
+  <script>
+    const fetchData = async (url) => {
+      try {
+        const response = await fetch(url);
+        if (!response.ok) {
+          console.error(`Response status: ${response.status}`);
+          return;
+        }
+        const result = await response.json();
+        return result;
+      } catch (error) {
+        console.error(error.message);
+        return false;
+      }
+    };
+
+    const guestDropDown = document.getElementById("guest");
+    fetchData("/api/guests").then((result) => {
+      for (let guest of result.guests) {
+        guestDropDown.innerHTML += `<option value="${guest.id}">${guest.last_name} ${guest.first_name}</option>`;
+      }
+    });
+
+    const roomDropDown = document.getElementById("room");
+    fetchData("/api/rooms").then((result) => {
+      for (let room of result.rooms) {
+        roomDropDown.innerHTML += `<option value="${room.id}">${room.number}</option>`;
+      }
+    });
+  </script>
+</html>

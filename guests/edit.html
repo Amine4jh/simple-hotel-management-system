@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Edit guest</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <a href="/guests/show" id="btn">Back</a>
+    <h2 style="text-align: center">Edit Guest</h2>
+
+    <form action="" method="post" class="edit">
+      <label for="fname">First Name</label>
+      <input type="text" id="fname" name="fname" placeholder="First name..." />
+
+      <label for="lname">Last Name</label>
+      <input type="text" id="lname" name="lname" placeholder="Last name..." />
+
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" placeholder="Email..." />
+
+      <label for="card_id">Card ID</label>
+      <input type="text" id="card_id" name="card_id" placeholder="Card ID..." />
+
+      <label for="address">Address</label>
+      <textarea name="address" id="address" placeholder="Address..."></textarea>
+
+      <button type="submit">Add</button>
+    </form>
+    <h6 id="load">Loading...</h6>
+  </body>
+  <script>
+    const fetchData = async (url) => {
+      try {
+        const response = await fetch(url);
+        if (!response.ok) {
+          console.error(`Response status: ${response.status}`);
+          return;
+        }
+        const result = await response.json();
+        return result;
+      } catch (error) {
+        console.error(error.message);
+        return false;
+      }
+    };
+
+    const id = location.pathname.split("/").pop();
+    const fNameInput = document.getElementById("fname");
+    const lNameInput = document.getElementById("lname");
+    const emailInput = document.getElementById("email");
+    const cIdInput = document.getElementById("card_id");
+    const addressInput = document.getElementById("address");
+    fetchData(`/api/guests/edit/${id}`)
+      .then((result) => {
+        console.log(result);
+        const { first_name, last_name, email, card_id, address } = result.guest;
+        fNameInput.value = first_name;
+        lNameInput.value = last_name;
+        emailInput.value = email;
+        cIdInput.value = card_id;
+        addressInput.value = address;
+      })
+      .catch((err) => {
+        console.error("Something wrong:", err);
+      })
+      .finally(() => {
+        document.getElementById("load").style.display = "none";
+      });
+  </script>
+</html>
