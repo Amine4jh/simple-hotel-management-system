@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -7,30 +7,52 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <a href="/guests/show" id="btn">Back</a>
-    <h2 style="text-align: center">Edit Guest</h2>
+    <div class="form-container">
+      <a href="/guests/show" class="btn-sm btn-back">Back</a>
+      <h2 style="text-align: center">Edit Guest</h2>
 
-    <form action="" method="post" class="edit">
-      <label for="fname">First Name</label>
-      <input type="text" id="fname" name="fname" placeholder="First name..." />
+      <form action="" method="post" class="edit">
+        <label for="fname">First Name</label>
+        <input
+          type="text"
+          id="fname"
+          name="fname"
+          placeholder="First name..."
+        />
 
-      <label for="lname">Last Name</label>
-      <input type="text" id="lname" name="lname" placeholder="Last name..." />
+        <label for="lname">Last Name</label>
+        <input type="text" id="lname" name="lname" placeholder="Last name..." />
 
-      <label for="email">Email</label>
-      <input type="email" id="email" name="email" placeholder="Email..." />
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="Email..." />
 
-      <label for="card_id">Card ID</label>
-      <input type="text" id="card_id" name="card_id" placeholder="Card ID..." />
+        <label for="card_id">Card ID</label>
+        <input
+          type="text"
+          id="card_id"
+          name="card_id"
+          placeholder="Card ID..."
+        />
 
-      <label for="address">Address</label>
-      <textarea name="address" id="address" placeholder="Address..."></textarea>
+        <label for="address">Address</label>
+        <textarea
+          name="address"
+          id="address"
+          placeholder="Address..."
+        ></textarea>
 
-      <button type="submit">Add</button>
-    </form>
-    <h6 id="load">Loading...</h6>
+        <button type="submit" id="updateBtn" class="btn btn-warning">
+          Update
+        </button>
+        <button type="submit" id="load" disabled class="btn btn-warning">
+          Loading
+        </button>
+      </form>
+    </div>
   </body>
   <script>
+    document.getElementById("updateBtn").style.display = "none";
+
     const fetchData = async (url) => {
       try {
         const response = await fetch(url);
@@ -67,6 +89,7 @@
       })
       .finally(() => {
         document.getElementById("load").style.display = "none";
+        document.getElementById("updateBtn").style.display = "";
       });
   </script>
 </html>

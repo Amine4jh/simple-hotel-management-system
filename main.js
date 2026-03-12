@@ -5,7 +5,7 @@ const mydb = require("./config/db");
 // import { header, footer } from "./components";
 
 const app = express();
-const port = 3000;
+const port = 3003;
 
 // Built-in middleware for classicHTML form data
 app.use(express.urlencoded({ extended: true }));
@@ -47,7 +47,7 @@ app.get("/reservations/show", (req, res) => {
       </head>
       <body>
         <section class="container">
-          <a href="/reservations" id="btn">Back</a>
+          <a href="/reservations" class="btn-sm btn-back">Back</a>
           <table>
             <tr>
               <th>Guest Full Name</th>
@@ -146,8 +146,8 @@ app.get("/reservations/show", (req, res) => {
           <td>${reservation.end_date}</td>
           <td>${reservation.total} MAD</td>
           <td>
-            <a href="/reservations/edit/${reservation.id}" id="editBtn">Edit</a>
-            <a href="/reservations/delete/${reservation.id}" onclick="return confirm('Are you sure?')" id="delBtn">Delete</a>
+            <a href="/reservations/edit/${reservation.id}" class="btn-sm btn-warning">Edit</a>
+            <a href="/reservations/delete/${reservation.id}" onclick="return confirm('Are you sure?')" class="btn-sm btn-danger">Delete</a>
           </td>
         </tr>
       `);
@@ -168,7 +168,7 @@ app.get("/reservations/show", (req, res) => {
           </div>
         </div>
         <div class="dropdown">
-          <button class="dropbtn">Dropdown Menu</button>
+          <button class="dropbtn">Filter</button>
           <div class="dropdown-content">
           <a href="/reservations/show?filter=price-0-100">Smaller than 100</a>
           <a href="/reservations/show?filter=price-100-500">100 - 500</a>
@@ -371,7 +371,7 @@ app.get("/guests/show", (req, res) => {
       </head>
       <body>
         <section class="container">
-          <a href="/guests" id="btn">Back</a>
+          <a href="/guests" class="btn-sm btn-back">Back</a>
           <table>
             <tr>
               <th>First Name</th>
@@ -405,8 +405,8 @@ app.get("/guests/show", (req, res) => {
           <td>${guest.card_id}</td>
           <td>${guest.address}</td>
           <td>
-            <a href="/guests/edit/${guest.id}" id="editBtn">Edit</a>
-            <a href="/guests/delete/${guest.id}" onclick="return confirm('Are you sure?')" id="delBtn">Delete</a>
+            <a href="/guests/edit/${guest.id}" class="btn-sm btn-warning">Edit</a>
+            <a href="/guests/delete/${guest.id}" onclick="return confirm('Are you sure?')" class="btn-sm btn-danger">Delete</a>
           </td>
         </tr>
       `);
@@ -553,7 +553,7 @@ app.get("/rooms/show", (req, res) => {
       </head>
       <body>
         <section class="container">
-          <a href="/rooms" id="btn">Back</a>
+          <a href="/rooms" class="btn-sm btn-back">Back</a>
           <table>
             <tr>
               <th>Number</th>
@@ -604,8 +604,8 @@ app.get("/rooms/show", (req, res) => {
           <td>${room.price_per_night} MAD</td>
           <td>${room.status}</td>
           <td>
-            <a href="/rooms/edit/${room.id}" id="editBtn">Edit</a>
-            <a href="/rooms/delete/${room.id}" onclick="return confirm('Are you sure?')" id="delBtn">Delete</a>
+            <a href="/rooms/edit/${room.id}" class="btn-sm btn-warning">Edit</a>
+            <a href="/rooms/delete/${room.id}" onclick="return confirm('Are you sure?')" class="btn-sm btn-danger">Delete</a>
           </td>
         </tr>
       `);

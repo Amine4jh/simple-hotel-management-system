@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -7,42 +7,44 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <style>
-    form.edit button {
-      background: #f6a33e;
-    }
-    form.edit button:hover {
-      background: #ed8a11;
-    }
     #load {
       text-align: center;
     }
   </style>
   <body>
-    <a href="/reservations/show" id="btn">Back</a>
-    <h2 style="text-align: center">Edit Reservation</h2>
+    <div class="form-container">
+      <a href="/reservations/show" class="btn-sm btn-back">Back</a>
+      <h2 style="text-align: center">Edit Reservation</h2>
 
-    <form action="" method="post" class="edit">
-      <label for="guest">Guest</label>
-      <select name="guest" id="guest">
-        <option value="">Choose guest...</option>
-      </select>
+      <form action="" method="post" class="edit">
+        <label for="guest">Guest</label>
+        <select name="guest" id="guest">
+          <option value="">Choose guest...</option>
+        </select>
 
-      <label for="room">Room</label>
-      <select name="room" id="room">
-        <option value="">Choose room...</option>
-      </select>
+        <label for="room">Room</label>
+        <select name="room" id="room">
+          <option value="">Choose room...</option>
+        </select>
 
-      <label for="sdate">Start Date</label>
-      <input type="date" id="sdate" name="sdate" />
+        <label for="sdate">Start Date</label>
+        <input type="date" id="sdate" name="sdate" />
 
-      <label for="edate">End Date</label>
-      <input type="date" id="edate" name="edate" />
+        <label for="edate">End Date</label>
+        <input type="date" id="edate" name="edate" />
 
-      <button type="submit">Update</button>
-    </form>
-    <h6 id="load">Loading...</h6>
+        <button type="submit" id="updateBtn" class="btn btn-warning">
+          Update
+        </button>
+        <button type="button" id="load" disabled class="btn btn-warning">
+          Loading...
+        </button>
+      </form>
+    </div>
   </body>
   <script>
+    document.getElementById("updateBtn").style.display = "none";
+
     const fetchData = async (url) => {
       try {
         const response = await fetch(url);
@@ -88,6 +90,7 @@
       })
       .finally(() => {
         document.getElementById("load").style.display = "none";
+        document.getElementById("updateBtn").style.display = "";
       });
   </script>
 </html>

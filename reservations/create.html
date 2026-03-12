@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -7,28 +7,30 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <a href="/reservations" id="btn">Back</a>
-    <h2 style="text-align: center">Create a New Reservation</h2>
+    <div class="form-container">
+      <a href="/reservations" class="btn-sm btn-back">Back</a>
+      <h2 style="text-align: center">Create a New Reservation</h2>
 
-    <form action="" method="post">
-      <label for="guest">Guest</label>
-      <select name="guest" id="guest">
-        <option value="">Choose guest...</option>
-      </select>
+      <form action="" method="post">
+        <label for="guest">Guest</label>
+        <select name="guest" id="guest">
+          <option value="">Choose guest...</option>
+        </select>
 
-      <label for="room">Room</label>
-      <select name="room" id="room">
-        <option value="">Choose room...</option>
-      </select>
+        <label for="room">Room</label>
+        <select name="room" id="room">
+          <option value="">Choose room...</option>
+        </select>
 
-      <label for="sdate">Start Date</label>
-      <input type="date" id="sdate" name="sdate" />
+        <label for="sdate">Start Date</label>
+        <input type="date" id="sdate" name="sdate" />
 
-      <label for="edate">End Date</label>
-      <input type="date" id="edate" name="edate" />
+        <label for="edate">End Date</label>
+        <input type="date" id="edate" name="edate" />
 
-      <button type="submit">Add</button>
-    </form>
+        <button type="submit" class="btn btn-primary">Add</button>
+      </form>
+    </div>
   </body>
   <script>
     const fetchData = async (url) => {

@@ -1,27 +1,38 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Home Page</title>
+    <title>Rooms | Hotel Admin</title>
     <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <header>
       <a id="logo" href="/">
-        <h2>Hotel</h2>
+        <i class="bx bx-hotel"></i>
+        <h2>Hotel Admin</h2>
       </a>
-      <div class="header-actions">
+      <nav class="header-actions">
         <a href="/reservations">Reservations</a>
         <a href="/rooms" class="active">Rooms</a>
         <a href="/guests">Guests</a>
-      </div>
+      </nav>
     </header>
 
-    <h2 style="text-align: center; margin: 30px 0;">Rooms Page</h2>
-    <a href="/rooms/create" id="btn">Add Room</a>
-    <a href="/rooms/show" id="btn">Show Rooms</a>
+    <main>
+      <div class="page-header">
+        <h2>Room Management</h2>
+        <div class="action-buttons">
+          <a href="/rooms/create" class="btn btn-primary">Add Room</a>
+          <a href="/rooms/show" class="btn btn-secondary">Show Rooms</a>
+        </div>
+      </div>
 
-    <section class="container"></section>
+      <section class="container"></section>
+    </main>
   </body>
 </html>
